@@ -1,25 +1,24 @@
 ![](course_logo.jpg)
 
-# Machine Learning for Multi-Omics Integration
+# AI for Genomics
 
 ## Instructor
 
-- Dr. Nikolay Oskolkov, Lund University, NBIS SciLifeLab
+- Dr. Nikolay Oskolkov, Group Leader (PI) at LIOS, Riga, Lativia
 
 ## Course overview
-Next-Generation Sequencing (NGS) technologies have led to the generation of vast amounts of biological and biomedical Big Data. The rapidly expanding volume and diversity of this data present both exciting opportunities and considerable challenges for analysis. Biological Big Data from various sources, often referred to as Multi-Omics data, hold great promise due to their synergistic effects, which can potentially model the behavior of biological cells. By integrating Omics data, we can uncover novel biological pathways that may not be detectable in individual Omics datasets alone. In this course, we will explore machine learning methods for integrating large biological datasets, combining both lectures and hands-on sessions.
+This course explores the application of modern AI architectures—Convolutional Neural Networks (CNNs), Long Short-Term Memory networks (LSTMs), and Transformers—to genomic and metagenomic data. Students will gain practical experience through hands-on coding labs and interactive notebooks, learning how to model sequence data, extract biologically meaningful features, and interpret results. Emphasis is placed on real-world applications, including prediction of genomic functional elements, sequence classification and source tracking, as well as biological sequence generation.
 
 ## Target audience and assumed background
 We assume some basic awareness of UNIX environment, as well as at least beginner level of R and / or Python programming.
 
 ## Learning outcomes
-By completing this course, you will:
-
-- Understand the basics of machine learning approaches to biological data analysis
-- Gain an overview of bioinformatic tools and best practices for integrative Omics analysis
-- Be able to design an integrative project and implement appropriate analysis methodologies
-- Be able to choose the right tools and approaches to answer your specific research question
-- Gain confidence in learning new methods needed to answer your research question
+By the end of this course, participants will be able to:
+- Understand and implement LSTM and CNN architectures for genomic sequence data
+- Apply attention mechanisms to improve genomic feature extraction and prediction
+- Train simple Transformer models for sequence classification or functional element prediction
+- Use notebooks to run and modify ML & DL workflows for genomics research
+- Interpret model outputs and assess performance using biological context
 
 ---
 
@@ -29,14 +28,22 @@ By completing this course, you will:
 
 | Time   | Activity                                                          | Link                                                                                                                                                    |
 |--------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ~ 1 h  | Recorded talk: Omics Logic Symposium 2022                                                                                 | [Video](https://www.youtube.com/watch?v=Jrz6t3fbOCw)                                            |
-| ~ 2 h  | Primer article: Predicting type 2 diabetes via machine learning integration of multiple omics from human pancreatic islets| [PDF](https://github.com/NikolayOskolkov/Physalia_MLOmicsIntegration_2025/raw/main/articles/Multi_Omics_T2D_ScientificReports2024.pdf)                                                                                                                                                                                             |
+| ~ 1 h  | Recorded talk: Hub AI Talks: Life Science Meets AI                                                                        | [Video](https://www.youtube.com/watch?v=X9J-NlkODmM)                                            |
 | ~ 1 h  | In case needed: Recap on Unix                                                                                             | [Lab](command-line-basics.md)                                                                   |
-| ~ 1 h  | Useful reading: Select features or Omics integration                                                                      | [Blog](https://medium.com/data-science/select-features-for-omics-integration-511390b7e7fd?sk=bf0c744caa41ec0cf37577d85a132276)                                                                                                                                                                                                   |
-| ~ 1 h  | Useful reading: Supervised Omics integration                                                                              | [Blog](https://medium.com/data-science/supervised-omics-integration-2158e1a6d23f?sk=6e4e6fd239da0d94cc4dd160ccf036d7)                                                                                                                                                                                                   |
-| ~ 1 h  | Useful reading: Unsupervised Omics integration                                                                            | [Blog](https://medium.com/data-science/unsupervised-omics-integration-688bf8fa49bf?sk=191bb97826b8b0965708a6ec9b094529)                                                                                                                                                                                                   |
-| ~ 1 h  | Useful reading: UMAP for data integration                                                                                 | [Blog](https://medium.com/data-science/umap-for-data-integration-50b5cfa4cdcd?sk=37149293008d917e6082552cc0edcd53)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Do we have Big Data in Life Sciences?                                                                     | [Blog](https://medium.com/data-science/do-we-have-big-data-in-life-sciences-c6c4e9f8645c?sk=34a6924df60feb5c7805e58e6e196034)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Why Biology is sceptic toward AI                                                                          | [Blog](https://medium.com/data-science/why-biology-is-sceptic-towards-ai-176e5747758c?sk=ffd06201fa0cbf3ca60edb69295bf7c5)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Deep Learning on ancient DNA                                                                              | [Blog](https://medium.com/data-science/deep-learning-on-ancient-dna-df042dc3c73d?sk=2ba9fa9810175e860cd538f3443ea08a)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Deep Learning for Single Cell biology                                                                     | [Blog](https://medium.com/data-science/deep-learning-for-single-cell-biology-935d45064438?sk=f5407fc10c171898de1ed9b4d5833914)                                                                                                                                                                                                   |
 | ~ 1 h  | Useful reading: Deep Learning for data integration                                                                        | [Blog](https://medium.com/data-science/deep-learning-for-data-integration-46d51601f781?sk=05dc5cd18d4c665acf8656c042d1cb45)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Deep Learning for clinical diagnostics                                                                    | [Blog](https://medium.com/data-science/deep-learning-for-clinical-diagnostics-ca7bc254e5ac?sk=cb26d9eca5644ae19cce383744a8d18f)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Deep Learning on Microscopy Imaging                                                                       | [Blog](https://medium.com/data-science/deep-learning-on-microscopy-imaging-865b521ec47c?sk=fbcc4a5e7ed0e989d9903886fd67bf5e)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Deep Learning on Human Microbiome                                                                         | [Blog](https://medium.com/data-science/deep-learning-on-human-microbiome-7854fba815fc?sk=a6977e48b863688b372c5be3d9ec7409)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: Deep Learning on Neanderthal Genes                                                                        | [Blog](https://medium.com/data-science/deep-learning-on-neanderthal-genes-ad1478cf37e7?sk=bae621d1d720688669a019a15db53cfc)                                                                                                                                                                                                   |
+| ~ 1 h  | Useful reading: LSTM to detect Neanderthal DNA                                                                            | [Blog](https://medium.com/data-science/lstm-to-detect-neanderthal-dna-843df7e85743?sk=5d32c984ae4a0a4cfb86a73a1d26d8a2)                                                                                                                                                                                                   |
+
+
+
+
 
 
 
