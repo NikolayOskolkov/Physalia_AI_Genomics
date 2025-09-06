@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Nikolay Oskolkov" />
+
+
+<title>Statistics / Machine Learning in R</title>
+
+<script src="Lab_StatsML_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Lab_StatsML_files/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="Lab_StatsML_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Lab_StatsML_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Lab_StatsML_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="Lab_StatsML_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="Lab_StatsML_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="Lab_StatsML_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="Lab_StatsML_files/navigation-1.1/tabsets.js"></script>
+<link href="Lab_StatsML_files/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="Lab_StatsML_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="Lab_StatsML_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="Lab_StatsML_files/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="Lab_StatsML_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="Lab_StatsML_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link id="font-awesome-1-attachment" rel="attachment" href="Lab_StatsML_files/font-awesome-5.1.0/fonts/fontawesome-webfont.ttf"/>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="assets/lab.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Statistics / Machine Learning in R</h1>
+<h3 class="subtitle">RaukR 2021 • Advanced R for Bioinformatics</h3>
+<h4 class="author">Nikolay Oskolkov</h4>
+
+</div>
+
+
+<!-- rmd lab header -->
+<p><img src="assets/logo.svg" alt="logo_raukr" class="trlogo"></p>
+<!-- ------------ Only edit title, subtitle & author above this ------------ -->
+<br>
+<div class="abstract spaced">
+<p>In this lab we will learn to code an Artificial Neural Network (ANN) in R both from scratch and using Keras / Tensorflow library. For simplicity, we consider a problem of linearly separable two classes of data points.</p>
+</div>
+<p><br></p>
+<div id="problem-formulation" class="section level1">
+<h1><span class="header-section-number">1</span> Problem formulation</h1>
+<p>Let us consider a simple problem of only <strong>two features</strong>, i.e. <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, and only <strong>four statistical observations (data points)</strong> that belong to two classes: <strong>circles and crosses</strong>. The four data points are schematically depicted below using <span class="math inline">\(X_1\)</span> vs. <span class="math inline">\(X_2\)</span> coordinate system. Obviously, the circles and crosses are separable with a <strong>linear</strong> decision boundary, i.e. hyperplane.</p>
+<p><img src="Problem.png" style="width: 100%;" /></p>
+<p>Let us implement the simplest possible feedforward / dense Artificial Neural Network (ANN) without hidden layers using Keras / Tensorflow library. Later, we will reproduce the results from Keras using from scratch coding ANN in R.</p>
+<p><img src="ANN_Scheme.png" style="width: 100%;" /></p>
+<p>The architecture of the simplest ANN is displayed above, and includes two input nodes (two feature vectors <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>) and one output node, where the two classes are coded in the following way: circles are codded as 0 and crosses as 1. The weights <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> of the edges of the ANN graph are the fitting parameters of the model.</p>
+</div>
+<div id="keras-solution" class="section level1">
+<h1><span class="header-section-number">2</span> Keras solution</h1>
+<p>Let us first define the X matrix of the feature vectors and the y vector of the class labels:</p>
+<pre class="r"><code>X &lt;- matrix(c(c(0, 0, 1, 1), c(0, 1, 0, 1)), ncol = 2)
+X</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    1
+## [3,]    1    0
+## [4,]    1    1</code></pre>
+<pre class="r"><code>y &lt;- c(0, 0, 1, 1)
+y</code></pre>
+<pre><code>## [1] 0 0 1 1</code></pre>
+<p>Now, let us define a sequential Keras model of the ANN corresponding to the scheme above and print the summary of the model. Here, we are going to use Sigmoid activation function on the output node because we have a binary classification problem.</p>
+<pre class="r"><code>library(&quot;keras&quot;)
+model &lt;- keras_model_sequential() 
+model %&gt;% layer_dense(units = 1, activation = &#39;sigmoid&#39;, input_shape = c(2))
+summary(model)</code></pre>
+<pre><code>## Model: &quot;sequential&quot;
+## ________________________________________________________________________________
+## Layer (type)                        Output Shape                    Param #     
+## ================================================================================
+## dense (Dense)                       (None, 1)                       3           
+## ================================================================================
+## Total params: 3
+## Trainable params: 3
+## Non-trainable params: 0
+## ________________________________________________________________________________</code></pre>
+<p>Next, we are going to compile and fit the Keras ANN model. Again, for simplicity, we are going to use Mean Squared Error (MSE) loss function, and Stochastic Gradient Descent (SGD) as an optimization algorithm (with a high learning rate 0.1). The training will be for 3000 epochs, it should be enough for MSE to reach zero.</p>
+<pre class="r"><code>model %&gt;% compile(loss = &#39;mean_squared_error&#39;,optimizer = optimizer_sgd(lr = 0.1))
+history &lt;- model %&gt;% fit(X, y, epochs = 3000)
+plot(history$metrics$loss~seq(1:length(history$metrics$loss)),xlab=&quot;Epochs&quot;,ylab=&quot;Loss&quot;,col=&quot;blue&quot;,cex=0.5)</code></pre>
+<p><img src="Lab_StatsML_files/figure-html/unnamed-chunk-6-1.svg" width="960" style="display: block; margin: auto auto auto 0;" /></p>
+<p>Finally, we will make predictions on the same data set. Overfitting is not a concern here because we want to make sure that the model was capable of linearly separating the two classes of data points.</p>
+<pre class="r"><code>model %&gt;% predict(X)</code></pre>
+<pre><code>##            [,1]
+## [1,] 0.09204158
+## [2,] 0.07014006
+## [3,] 0.94415760
+## [4,] 0.92636704</code></pre>
+<pre class="r"><code>model %&gt;% predict_classes(X)</code></pre>
+<pre><code>##      [,1]
+## [1,]    0
+## [2,]    0
+## [3,]    1
+## [4,]    1</code></pre>
+<p>It looks like the Keras model successfully can assign correct labels to the four data points.</p>
+</div>
+<div id="coding-ann-from-scratch-in-r" class="section level1">
+<h1><span class="header-section-number">3</span> Coding ANN from scratch in R</h1>
+<p>Now we are going to implement the same ANN architecture from scrtach in R. This will allow us to better understand the concepts like learning rate, gradient descent as well as to get an intuition of forward- and back-propagation. First of all, let us denote the sigmoid activation function on the output node as</p>
+<p><span class="math display">\[\phi(s)=\frac{1}{1+\exp^{\displaystyle -s}}\]</span></p>
+<p>The beauty of this function is that it has a simple derivative that is expressed thorugh the sigmoid function itself:</p>
+<p><span class="math display">\[\phi^\prime(s)=\phi(s)\left(1-\phi(s)\right)\]</span> Next, the loss MSE function, i.e. the squared difference between the prediction y and the truth d, is given by the following simple equation:</p>
+<p><span class="math display">\[E(w_1,w_2)=\frac{1}{2}\sum_{i=1}^N\left(d_i-y_i(w_1,w_2)\right)^2; \,\,\,\,\, y=\phi(w_1x_1+w_2x_2)\]</span> Finally, the gradient descent update rule can be written as follows:</p>
+<p><span class="math display">\[w_{1,2}=w_{1,2}+\mu\frac{\partial E}{\partial w_{1,2}}\]</span> <span class="math display">\[\frac{\partial E}{\partial w_{1,2}}=-(d-y)*y*(1-y)*x_{1,2}\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is a learning rate. Let us put it all together in a simple for-loop that updates the fitting parameters <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> via minimizing the mean squared error:</p>
+<pre class="r"><code>phi &lt;- function(x){return(1/(1 + exp(-x)))}
+
+X &lt;- matrix(c(c(0, 0, 1, 1), c(0, 1, 0, 1)), ncol = 2)
+d &lt;- matrix(c(0, 0, 1, 1), ncol = 1)
+
+mu &lt;- 0.1; N_epochs &lt;- 10000; E &lt;- vector()
+w &lt;- matrix(c(0.1, 0.5), ncol = 1) #initialization of weights w1 and w2
+for(epochs in 1:N_epochs)
+{
+  #Forward propagation
+  y &lt;- phi(X %*% w - 3) #here we use -3 as a fixed bias (not optimized for simplicity)
+  
+  #Backward propagation
+  E &lt;- append(E, sum((d-y)^2))
+  dE_dw &lt;- (d-y) * y * (1-y)
+  w &lt;- w + mu * (t(X) %*% dE_dw)
+}
+plot(E ~ seq(1:N_epochs), cex = 0.5, xlab = &quot;Epochs&quot;, ylab = &quot;Error&quot;, col=&quot;red&quot;)</code></pre>
+<p><img src="Lab_StatsML_files/figure-html/unnamed-chunk-9-1.svg" width="960" style="display: block; margin: auto auto auto 0;" /></p>
+<p>The mean squared error seems to be decreasing and reaching zero. Let us display the final y vector of predicted labels, it should be equal to the d vector of true labeles.</p>
+<pre class="r"><code>y</code></pre>
+<pre><code>##            [,1]
+## [1,] 0.04742587
+## [2,] 0.03166204
+## [3,] 0.98444378
+## [4,] 0.97650411</code></pre>
+<p>Indeed, the predicted values of labels are veru close to the true ones and similar to the ones obtained from Keras solution. Well done, we have successfully implemented an ANN from scratch in R!</p>
+<!-- --------------------- Do not edit this and below ---------------------- -->
+</div>
+<div id="session-info" class="section level1">
+<h1><span class="header-section-number">4</span> Session info</h1>
+<pre><code>## R version 4.1.0 (2021-05-18)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 18.04.5 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=sv_SE.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=sv_SE.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=sv_SE.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=sv_SE.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] keras_2.4.0       fontawesome_0.2.1 captioner_2.2.3   bookdown_0.22    
+## [5] knitr_1.33       
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.6        whisker_0.4       magrittr_2.0.1    lattice_0.20-44  
+##  [5] R6_2.5.0          rlang_0.4.11      highr_0.9         stringr_1.4.0    
+##  [9] tools_4.1.0       grid_4.1.0        xfun_0.24         png_0.1-7        
+## [13] jquerylib_0.1.4   tfruns_1.5.0      htmltools_0.5.1.1 yaml_2.2.1       
+## [17] digest_0.6.27     tensorflow_2.5.0  Matrix_1.3-4      base64enc_0.1-3  
+## [21] sass_0.4.0        zeallot_0.1.0     evaluate_0.14     rmarkdown_2.9    
+## [25] stringi_1.6.2     compiler_4.1.0    bslib_0.2.5.1     generics_0.1.0   
+## [29] reticulate_1.20   jsonlite_1.7.2</code></pre>
+<p style="text-align: left; font-size: small;">
+Built on: <i class="fa fa-calendar" aria-hidden="true"></i> 22-jun-2021 at <i class="fa fa-clock-o" aria-hidden="true"></i> 10:58:49.
+</p>
+<hr/>
+<div style="padding-bottom: 1.5em">
+<p><span style="float:left; vertical-align:middle"> <b>2021</b> • <a href="https://www.scilifelab.se/">SciLifeLab</a> • <a href="https://nbis.se/">NBIS</a> • <a href="https://nbisweden.github.io/workshop-RaukR-2106/">RaukR</a> </span> <span style="float:right; vertical-align:middle"> <span class="footericon" style="padding-right:4px; padding-left:4px"> <a href="https://nbisweden.github.io/workshop-RaukR-2106/"><img src="assets/icons8-globe-26.png" alt="website" border="0" style="height:15px"></a> </span> <span class="footericon" style="padding-right:4px; padding-left:4px"> <a href="https://twitter.com/hashtag/RaukR?src=hash"><img src="assets/icons8-twitter-26.png" alt="twitter" border="0" style="height:15px"></a> </span> </span></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
